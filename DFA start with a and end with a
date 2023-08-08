@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    int transitions[][2] = {{1, -1}, {-1, 2}, {-1, -1}};
+    int current_state = 0; 
+    char input[100];
+    printf("Enter input string: ");
+    scanf("%s", input);
+    for (int i = 0; i < strlen(input); i++) {
+        char symbol = input[i];
+        int symbol_index;
+        if (symbol == 'a') {
+            symbol_index = 0;
+        } else if (symbol == 'b') {
+            symbol_index = 1;
+        } else {
+            printf("Invalid input symbol '%c'\n", symbol);
+            return 1;
+        }
+        current_state = transitions[current_state][symbol_index];        
+        if (current_state == -1) {
+            printf("String is accepted.\n");
+            return 0;
+        }
+    }
+}
